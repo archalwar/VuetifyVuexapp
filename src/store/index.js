@@ -35,6 +35,10 @@ export default new Vuex.Store({
       deleteTask(state, id){
         state.tasks = state.tasks.filter(task => task.id != id)
       },
+      updateTaskTitle(state, payload){
+        let task = state.tasks.filter(task => task.id ==payload.id)[0]
+        task.title = payload.title
+      },
       showSnackBar(state, text){
         let timeout = 0
 
@@ -66,6 +70,11 @@ export default new Vuex.Store({
     deleteTask({commit}, id){
       commit('deleteTask', id)
       commit('showSnackBar', 'Task Deleted')
+    },
+    
+    updateTaskTitle({commit}, playload){
+      commit('updateTaskTitle', playload)
+      commit('showSnackBar', 'Task Updated')
     }
 
   },
