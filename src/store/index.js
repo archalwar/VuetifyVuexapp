@@ -34,6 +34,12 @@ export default new Vuex.Store({
 
   },
   actions: {
+    
+    //calling deleteTask from mutations
+    deleteTask(context, id){
+      context.commit('deleteTask', id)
+    }
+
   },
   modules: {
   }
