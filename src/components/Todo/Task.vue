@@ -25,7 +25,7 @@
     </v-list-item>
     <v-divider></v-divider>
 
-    <dialog-delete v-if="dialogs.delete" :task = "task" @close="dialogs.delete = false" />
+   
   </div>
 </template>
 
@@ -33,15 +33,8 @@
 import TaskMenu from './TaskMenu.vue';
 export default {
   props: ["task"],
-  data() {
-    return {
-      dialogs: {
-        delete: false,
-      },
-    };
-  },
-  components: {
-    "dialog-delete": require("@/components/Dialogs/DialogDelete.vue").default,
+ 
+  components: {   
     "task-menu": require("@/components/Todo/TaskMenu.vue").default,    
   },
 };
