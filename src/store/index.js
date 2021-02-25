@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
+  state: {   
     search: null,
     tasks: [
       { id: 1, title: "Wake up", done: false, dueDate: '2021-2-26' },
