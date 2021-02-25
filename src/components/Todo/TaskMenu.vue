@@ -27,6 +27,12 @@
       :task="task"
       @close="dialogs.edit = false"
     />
+    
+     <dialog-due-date
+      v-if="dialogs.dueDate"
+      :task="task"
+      @close="dialogs.dueDate = false"
+    />
 
     <dialog-delete
       v-if="dialogs.delete"
@@ -43,6 +49,7 @@ export default {
   data: () => ({
     dialogs: {
         edit: false,
+        dueDate: false,
       delete: false,
     },
     items: [
@@ -57,7 +64,7 @@ export default {
         title: "Due date",
         icon: "mdi-calendar",
         click() {
-          console.log("due date");
+           this.dialogs.dueDate = true
         },
       },
       {
@@ -76,7 +83,8 @@ export default {
   },
   components: {
     "dialog-delete": require("@/components/Dialogs/DialogDelete.vue").default,
-     "dialog-edit": require("@/components/Dialogs/DialogEdit.vue").default,   
+     "dialog-due-date": require("@/components/Dialogs/DialogDueDate.vue").default,
+    "dialog-edit": require("@/components/Dialogs/DialogEdit.vue").default,   
   },
 };
 </script>
