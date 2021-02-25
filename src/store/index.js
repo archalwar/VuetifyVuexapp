@@ -6,9 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     tasks: [
-      { id: 1, title: "Wake up", done: false },
-      { id: 2, title: "Get Bananas", done: false },
-      { id: 3, title: "Eat Bananas", done: false }
+      { id: 1, title: "Wake up", done: false, dueDate: '2021-2-26' },
+      { id: 2, title: "Get Bananas", done: false,  dueDate: '2021-2-27' },
+      { id: 3, title: "Eat Bananas", done: false,  dueDate: null }
     ],
     snackbar: {
       show: false,
@@ -21,7 +21,8 @@ export default new Vuex.Store({
       let newTask = { 
                       id: Date.now(),
                       title: newTaskTitle, 
-                      done:false
+                      done:false,
+                      dueDate: null
                     }
   
       state.tasks.push(newTask) 
@@ -38,6 +39,10 @@ export default new Vuex.Store({
       updateTaskTitle(state, payload){
         let task = state.tasks.filter(task => task.id ==payload.id)[0]
         task.title = payload.title
+      },
+      updateTaskDueDate(state, payload){
+        let task = state.tasks.filter(task => task.id ==payload.id)[0]
+        task.dueDate = payload.dueDate
       },
       showSnackBar(state, text){
         let timeout = 0
@@ -71,10 +76,14 @@ export default new Vuex.Store({
       commit('deleteTask', id)
       commit('showSnackBar', 'Task Deleted')
     },
-    
+
     updateTaskTitle({commit}, playload){
       commit('updateTaskTitle', playload)
       commit('showSnackBar', 'Task Updated')
+    },
+    updateTaskDueDate({commit}, playload){
+      commit('updateTaskDueDate', playload)
+      commit('showSnackBar', 'Due Date updated!')
     }
 
   },
