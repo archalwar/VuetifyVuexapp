@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    search: null,
     tasks: [
       { id: 1, title: "Wake up", done: false, dueDate: '2021-2-26' },
       { id: 2, title: "Get Bananas", done: false,  dueDate: '2021-2-27' },
@@ -16,7 +17,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-
+    setSearch(state, value){
+      state.search = value
+    },
     addTask(state, newTaskTitle){  
       let newTask = { 
                       id: Date.now(),
@@ -86,6 +89,18 @@ export default new Vuex.Store({
       commit('showSnackBar', 'Due Date updated!')
     }
 
+  },
+  getters: {
+      taskFiltered(state){
+        if(!state.search){
+          return state.tasks
+        }
+        else{
+          return state.tasks.filter( task => 
+              task.title.toLowerCase().includes(state.search.toLowerCase())
+            )
+        }
+      }
   },
   modules: {
   }
